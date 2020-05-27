@@ -5,6 +5,7 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+    network_mode: host
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_HOST_AUTH_METHOD=trust
@@ -15,7 +16,6 @@ services:
       - ./api:/app/api
     ports:
       - "8000:8000"
-    network_mode: host
     depends_on:
       - db
   frontend:
