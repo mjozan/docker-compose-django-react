@@ -2,5 +2,6 @@
     "name": "Docker in Docker Compose",
     "service": "django",
     "dockerComposeFile": "docker-compose.yml",
-    "workspaceFolder": "/"
+    "workspaceFolder": "/",
+    "forwardPorts": [8000, 3000]
 }
