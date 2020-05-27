@@ -1,6 +1,6 @@
 {
     "name": "Docker in Docker Compose",
     "service": "django",
-    "dockerComposeFile": "docker-compose.dev.yml",
+    "dockerComposeFile": "docker-compose.yml",
     "workspaceFolder": "/"
 }
