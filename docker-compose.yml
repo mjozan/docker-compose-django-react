@@ -5,25 +5,31 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+    network_mode: host
+
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_HOST_AUTH_METHOD=trust
-    networks:
-      - app_net
+    # networks:
+    #   - app_net
   django:
     build: ./api
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    links:
+      - db
     volumes:
       - ./api:/app/api
     ports:
       - "8000:8000"
-    networks:
-      - app_net
+    # networks:
+    #   - app_net
   frontend:
     build: ./frontend
     command: ["npm", "start"]
-    networks:
-      - app_net
+    links:
+      - db
+    # networks:
+    #   - app_net
     volumes:
       - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules
@@ -32,6 +38,6 @@ services:
 
 volumes:
   node-modules:
-networks:
-  app_net:
-    external: false
+# networks:
+#   app_net:
+#     external: false
