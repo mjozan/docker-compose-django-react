@@ -12,7 +12,6 @@ services:
   django:
     build: ./api
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-    network_mode: host
     volumes:
       - ./api:/app/api
     ports:
@@ -20,6 +19,7 @@ services:
   frontend:
     build: ./frontend
     command: ["npm", "start"]
+    network_mode: host
     volumes:
       - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules
