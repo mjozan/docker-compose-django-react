@@ -3,31 +3,27 @@ version: "3"
 services:
   db:
     image: postgres
-    expose:
-      - "5432"
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_HOST_AUTH_METHOD=trust
+    networks:
+      - app_net
   django:
     build: ./api
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - ./api:/app/api
-    expose:
-      - "8000"
     ports:
       - "8000:8000"
-    # networks:
-    #   - app_net
+    networks:
+      - app_net
   frontend:
     build: ./frontend
     command: ["npm", "start"]
-    # networks:
-    #   - app_net
-    expose:
-      - "3000"
+    networks:
+      - app_net
     volumes:
       - ./frontend:/app/frontend
       - node-modules:/app/frontend/node_modules
@@ -36,7 +32,6 @@ services:
 
 volumes:
   node-modules:
-# networks:
-#   app_net:
-#     name: "network"
-#     external: true
+networks:
+  app_net:
+    external: false
