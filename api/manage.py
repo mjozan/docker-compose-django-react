@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
-
+print('im there')
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "api.settings")
     try:
@@ -12,4 +12,6 @@ if __name__ == "__main__":
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    print('executing')
     execute_from_command_line(sys.argv)
+print('im there2')
