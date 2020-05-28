@@ -19,13 +19,13 @@ services:
       - "8000"
     ports:
       - "8000:8000"
-    networks:
-      - app_net
+    # networks:
+    #   - app_net
   frontend:
     build: ./frontend
     command: ["npm", "start"]
-    networks:
-      - app_net
+    # networks:
+    #   - app_net
     expose:
       - "3000"
     volumes:
@@ -36,8 +36,7 @@ services:
 
 volumes:
   node-modules:
-
-networks:
-  app_net:
-    name: "network"
-    external: true
+# networks:
+#   app_net:
+#     name: "network"
+#     external: true
